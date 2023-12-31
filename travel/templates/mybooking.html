@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}{{user.username}}'s Booking Table{% endblock %}
+
+{% block content %}
+<body>
+    <div class="avb_table">
+        <div class="avb_table_header">
+            <h1 style="color:black;text-align: center;">My Booking</h1>
+        </div>
+        <div class="avb_table_body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Destination</th>
+                        <th>Time Duration</th>
+                        <th>Total Cost</th>
+                        <th>Booking Code</th>
+                        <th>Booking Date</th>
+                        <!-- <th>Date</th> -->
+                        <th>Booking Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in booking %}
+                    <tr>
+                        <td>{{b.id}}</td>
+                        <td>{{b.b_trip}}</td>
+                        <td>{{b.duration}}</td>
+                        <td>{{b.total_cost}}</td>
+                        <td>{{b.b_code}}</td>
+                        <td>{{b.b_date}}</td>
+                        <!-- <td>{{b.booked_at}}</td> -->
+                        <td>
+                            <form method="POST" action="/customer/booking_cancel/{{request.user.id}}/{{b.id}}/">
+                                {% csrf_token %}
+                                <button {% if b.b_status == True %} disabled {% endif %} style="border:none;"  onclick="return confirm('Are you sure to delete?');">
+                                    {% if b.b_status == False %}<span class="cancel_booking">Cancel</span> {% else %} <span class="status_confirmed">Confirmed</span> {% endif %}
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+{% endblock %}

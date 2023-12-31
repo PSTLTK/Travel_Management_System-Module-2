@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Header</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="../../../../static/css/header_style.css">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    </head>
+<body>
+    <nav>
+        <ul>
+            <li class="logo">HAPPY HOLIDAY</li>
+            <li class="btn"><span class="fa fa-bars"></span></li>
+            <div class="items">
+                {% if user.username == "admin" %}
+                <li><a href="{% url 'admin_home' %}">Home</a> </li>
+                {% else %}
+                <li><a href="{% url 'blog' %}">Home</a></li>
+                {% endif %}
+                
+                {% if user.username != "admin" %}
+                {% if user.is_authenticated %}
+                <li><a href="/customer/mybooking/{{user.id}}/">My Booking</a> </li>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <li><a href="/customer/contact/{{user.id}}/">Contact Us</a></li>
+                {% endif %}
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'change_password' %}">Change Password</a></li>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </div>
+            <li class="search-icon">
+                <form action="/search_by/">
+                    <input type="search" placeholder="Search ....." name="search">
+                    <label class="icon">
+                        <span class="fa fa-search"></span>
+                    </label>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <script>
+        $('nav ul li.btn span').click(function(){
+            $('nav ul div.items').toggleClass("show");
+            $('nav ul li.btn span').toggleClass("show");
+        });
+    </script>
+</body>
+</html>

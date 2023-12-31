@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Blog</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../static/slider/slider_style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    </head>
+    <body>
+        <header>
+            <div id="logo">Happy <a id="logo-s">Holiday</a></div>
+            {% if user.is_authenticated %}
+            <span class="welcome"><a class="act" href="/customer/view_profile/{{user.id}}/">Welcome {{user.username}}</a> </span>
+            {% else %}
+            <span class="welcome"><a class="act" href="{% url 'login' %}">Login</a></span>
+            {% endif %}
+        </header>
+
+        <div class="slider">
+
+            <div class="myslider fade" style="display:block;">
+                <div class="txt">
+                    <h1>Asia</h1>
+                    <p>As it is the largest continent in the world and has many places to visit and <br>
+                        many ancient historical sites, I would recommend Asia as one of the best <br>
+                        places to go on vacation. Have a happy holiday!
+                    </p>
+                    <a href="{% url 'asia' %}"><button>Let's go</button></a>
+                </div>
+                <img src="../static/slider/slider_images/asia.jpg" style="width:100%; height:100%;">
+            </div>
+            <div class="myslider fade">
+                <div class="txt">
+                    <h1>Europe</h1>
+                    <p>If you like the latest technology, skyscrapers and modern innovations of a <br>
+                    developing country, I will recommend visiting Europe. Have a happy holiday!</p>
+                    <a href="{% url 'europe' %}"><button>Let's go</button></a>
+                </div>
+                <img src="../static/slider/slider_images/europe.jpg" style="width:100%; height:100%;">
+            </div>
+            <div class="myslider fade">
+                <div class="txt">
+                    <h1>Africa</h1>
+                    <p>If you like wild animals and love nature, I recommend visiting Africa.<br>
+                     Have a happy holiday!</p>
+                    <a href="{% url 'africa' %}"><button>Let's go</button></a>
+                </div>
+                <img src="../static/slider/slider_images/africa.jpg" style="width:100%; height:100%;">
+            </div>
+            <div class="myslider fade">
+                <div class="txt">
+                    <h1>North America</h1>
+                    <p>If you like the latest technology, skyscrapers and modern innovations of a <br>
+                        developing country, I will recommend visiting North America. Have a happy holiday!</p>
+                    <a href="{% url 'northamerica' %}"><button>Let's go</button></a>
+                </div>
+                <img src="../static/slider/slider_images/northamerica.jpg" style="width:100%; height:100%;">
+            </div>
+            <div class="myslider fade">
+                <div class="txt">
+                    <h1>South America</h1>
+                    <p>If you like the latest technology, skyscrapers and modern innovations of a <br>
+                        developing country, I will recommend visiting South America. Have a happy holiday!</p>
+                    <a href="{% url 'southamerica' %}"><button>Let's go</button></a>
+                </div>
+                <img src="../static/slider/slider_images/southamerica.jpg" style="width:100%; height:100%;">
+            </div>
+            <div class="myslider fade">
+                <div class="txt">
+                    <h1>Australia</h1>
+                    <p>If you like the latest technology, skyscrapers and modern innovations of a <br>
+                        developing country, I will recommend visiting Australia. Have a happy holiday!</p>
+                    <a href="{% url 'australia' %}"><button>Let's go</button></a>
+                </div>
+                <img src="../static/slider/slider_images/australia.jpg" style="width:100%; height:100%;">
+            </div>
+            <div class="myslider fade">
+                <div class="txt">
+                    <h1>Antarctica</h1>
+                    <p>
+                        If you like the cold weather and love nature, I recommend you to visit Antarctica,<br>
+                         where you can enjoy the beauty of the sunset, which is completely covered with ice<br>
+                          and the nature of the penguins, at the same time. Have a happy holiday!
+                    </p>
+                    <a href="{% url 'antarctica' %}"><button>Let's go</button></a>
+                </div>
+                <img src="../static/slider/slider_images/antarctica.jpeg" style="width:100%; height:100%;">
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            <div class="dotsbox" style="text-align:center;">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot" onclick="currentSlide(6)"></span>
+                <span class="dot" onclick="currentSlide(7)"></span>
+            </div>
+
+        </div>
+        <script src="../static/js/app.js"></script>
+    </body>
+</html>

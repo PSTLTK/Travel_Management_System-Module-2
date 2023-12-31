@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}View Destination{% endblock %}
+
+{% block content %}
+<body>
+    <div class="avb_table">
+        <div class="avb_table_header">
+            <h1 class="ad" style="color:black;text-align: center;">
+                All Destination
+            </h1>
+            <h1 class="aad-button" >
+                <a href="{% url 'admin_add_destination' %}" style="color:black;">Add Destination</a>
+            </h1>
+        </div>
+        <div class="avb_table_body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Image</th>
+                        <th>Destination</th>
+                        <th>Country</th>
+                        <th>Flight Price</th>
+                        <th>Adult Price</th>
+                        <th>Child Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in trip %}
+                    <tr>
+                        <td>{{t.id}}</td>
+                        <td><a href="{{t.main_image.url}}"><img src="/media/{{t.main_image}}"></a></td>
+                        <td>{{t.place}}</td>
+                        <td>{{t.country}}</td>
+                        <td>{{t.flight_price}} MMK</td>
+                        <td>{{t.adult_per_day}} MMK</td>
+                        <td>{{t.child_per_day}} MMK</td>
+                        <td>
+                            <a href="/admin_edit_destination/{{t.id}}/"><span><ion-icon style="color:green;font-size:24px;z-index:-100;" name="create"></ion-icon></span></a>
+                            <a href="/admin_delete_destination/{{t.id}}/" onclick="return confirm('Are you sure to delete?');" ><span><ion-icon style="color:rgb(255, 0, 0);font-size:24px;z-index: -100;"name="trash"></ion-icon></span></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+<!-- <section>
+    {% for t in trip %}
+    <div class="avd-card">
+        <div class="face front">
+            <a href="{{t.main_image.url}}"><img src="/media/{{t.main_image}}"></a>
+            <h3>{{t.place}}</h3>
+        </div>
+        <div class="face back">
+            <td>{{t.place}}</h5>
+            <h5>{{t.country}}</h5>
+            <h5>{{t.day}}</h5>
+            <h5>{{t.number_of_person}}</h5>
+            <h5>{{t.flight_price}}</h5>
+            <h5>{{t.food_price}}</h5>
+            <div class="avd-link">
+                <a href="/admin_edit_destination/{{t.id}}/"><span><ion-icon style="color:green;" name="create"></ion-icon></span></a>
+                <a href="/admin_delete_destination/{{t.id}}/" onclick="return confirm('Are you sure to delete?');" ><span><ion-icon style="color:rgb(255, 0, 0);"name="trash"></ion-icon></span></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section> -->
+{% endblock %}
+

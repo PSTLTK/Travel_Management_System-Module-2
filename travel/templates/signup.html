@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Sign-up Form{% endblock %}
+
+{% block content %}
+<section>
+    <div class="signup-box" id ="signup">
+        <form method="POST">
+            {% csrf_token %}
+            <h2>Sign Up Form</h2><br>
+            {% if messages %}
+            {% for message in messages %}
+        
+            <div class= "alert {{message.tags}} alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="sec-A">
+                <div class="signup-input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    {{form.username}}
+                    <label><b>Account Name</b></label>
+                </div>
+                <div class="signup-input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    {{form.first_name}}
+                    <label><b>First Name</b></label>
+                </div>
+                <div class="signup-input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    {{form.last_name}}
+                    <label><b>Last Name</b></label>
+                </div>
+            </div>
+            <div class="sec-B">
+                <div class="signup-input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    {{form.email}}
+                    <label><b>Email</b></label>
+                </div>
+                <div class="signup-input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    {{form.password1}}
+                    <label><b>Password</b></label>
+                </div>
+                <div class="signup-input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    {{form.password2}}
+                    <label><b>Confirm Password</b></label>
+                </div>
+            </div>
+            <button type="submit" class="signup-button">Sign Up</button>
+            <div class="error">
+                {{form.errors}}
+            </div>
+            
+        </form>
+    </div>
+</section>
+
+{% endblock %}

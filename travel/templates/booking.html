@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Booking{% endblock %}
+
+{% block content %}
+<section>
+    <form method="POST" action="/customer/booking/{{trip.id}}/">
+        {% csrf_token %}
+    <div class="booking-box">
+        <div class="booking-title">
+            <h3>Booking for {{trip.place}}</h3>
+        </div>
+        <div class="booking-detail">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                <div class= "alert {{message.tags}} alert-dismissible fade show" role="alert" style="color:red;">
+                {{message}}
+                <!-- <button type="button" data-bs-dismiss="alert" aria-label="Close"></button> -->
+            </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="booking-detail-section-1">
+                <div class="booking-input-box">
+                    <label>Name</label>
+                    <input type="text" name="b_name" required>
+                </div>
+                <div class="booking-input-box">
+                    <label>Email</label>
+                    <input type="email" name="b_email" required>
+                </div>
+                <div class="booking-input-box">
+                    <label>Mobile Number</label>
+                    <input type="text" name="b_phone" required>
+                </div>
+                <div class="booking-input-box">
+                    <label>Booking Date</label>
+                    <input type="date" name="b_date" min="{{today_date}}"required>
+                </div>
+            </div>
+            <div class="booking-detail-section-2">
+                <div class="booking-input-box">
+                    <label>Duration</label>
+                    <input id="duration_day" type="number"  name="duration_day" min=1 placeholder="0" required>
+                    <select id="duration_type" name="duration_type"onfocus="this.size=3;" onblur="this.size=0;" onchange="this.size=1; this.blur()" required>
+                        <option value="1" selected>day(s)</option>
+                        <option value="7" >Week(s)</option>
+                        <option value="30" >month(s)</option>
+                    </select>
+                </div>
+                <div class="booking-input-box">
+                    <label>Number of Adult ( <span id="adult_price" style="color:black;">{{trip.adult_per_day}}</span> MMK )</label>
+                    <input type="number" id="adult_number" min=0 placeholder="0">
+                </div>
+                <div class="booking-input-box">
+                    <label>Number of Child ( <span id="child_price" style="color:black;">{{trip.child_per_day}} </span> MMK )</label>
+                    <input type="number" id="child_number" min=0 placeholder="0">
+                </div>
+                <div class="booking-input-box">
+                    <label>Flight Price For Each</label>
+                    <input type="text" id="flight_price"name="flight_price"value="{{trip.flight_price}}" readonly>
+                </div>
+                <div class="booking-input-box">
+                    <label>Total Price</label>
+                    <input id="total_cost" type="text" name="total_cost"  readonly>
+                </div>
+            </div>
+        </div>
+        <button type="submit">Book Now</button>
+    </div>
+    </form>
+</section>
+<script>
+    function calculation(){
+        const duration = document.getElementById('duration_day').value * document.getElementById('duration_type').value;
+        const adultCost = document.getElementById('adult_number').value * parseFloat(document.getElementById('adult_price').textContent);
+        const childCost = document.getElementById('child_number').value * parseFloat(document.getElementById('child_price').textContent);
+        const airplaneCost = document.getElementById('flight_price').value
+
+        let a = (Number(document.getElementById('adult_number').value) + Number(document.getElementById('child_number').value))*airplaneCost ;
+        const totalCost = (adultCost + childCost) * duration + a;
+
+        document.getElementById('total_cost').value = totalCost;
+    }
+
+    document.getElementById('adult_number').oninput = calculation;
+    document.getElementById('child_number').oninput = calculation;
+    document.getElementById('duration_day').oninput = calculation;
+    document.getElementById('duration_type').oninput = calculation;
+    document.getElementById('flight_price').oninput = calculation;
+    
+</script>
+{% endblock %}

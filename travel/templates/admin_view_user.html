@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}View User{% endblock %}
+
+{% block content %}
+<body>
+    <div class="avb_table">
+        <div class="avb_table_header">
+            <h1 style="color:black;text-align: center;">All User</h1>
+        </div>
+        <div class="avb_table_body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Profile</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if detail %}
+                    {% for d in detail %}
+                    <tr>
+                        <td>{{d.user.id}}</td>
+                        <td><a href="{{d.profile.url}}"><img src="/media/{{d.profile}}"></a></td>
+                        <td style="text-transform: uppercase;letter-spacing: 1px;">{{d.user.username}}</td>
+                        <td>{{d.user.email}}</td>
+                        <td>{{d.phone}}</td>
+                        <td>{{d.address}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Destination{% endblock %}
+
+{% block content %}
+<main>
+    <div class="add-box">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="add-title">Edit Destination</h2>
+                <div class="section-1">
+                    <h4>Destination Detail</h4>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="globe"></ion-icon></span>
+                        <input type="text" value="{{trip.place}}" name="place" required>
+                        <label><b>Destination Name </b></label>
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="globe"></ion-icon></span>
+                        <input type="text" value="{{trip.country}}" name="country" required>
+                        <label><b>City and Country</b></label>
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="airplane"></ion-icon></span>
+                        <input type="text" value="{{trip.flight_price}}" name="flight_price" required>
+                        <label><b>Flight Price For A Person</b></label>
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="logo-usd"></ion-icon></span>
+                        <input type="text" value="{{trip.adult_per_day}}" name="adult" required>
+                        <label><b>Price For Adult per Day</b></label>
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="logo-usd"></ion-icon></span>
+                        <input type="text" value="{{trip.child_per_day}}" name="child" required>
+                        <label><b>Price For Child per Day</b></label>
+                    </div>
+                    <div class="add-input-box">
+                        <select name="continent">
+                            <option>Continent</option>
+                            {% for c in continent %}
+                            <option value="{{c.id}}" {% if c.id == trip.continent_id%}selected{% endif %}>{{c.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="section-2">
+                    <h4>Images of Destination</h4>
+                    <div class="add-input-box">
+                        {% if trip.main_image %}
+                        <span class="edit-img"><a href="{{trip.main_image.url}}"><img src="/media/{{trip.main_image}}" style="width:40px;height:40px;border-radius:50%;vertical-align: middle;"></a></span>
+                        {% endif %}
+                        <input type="file" name="main_image">
+                    </div>
+
+                    <div class="add-input-box">
+                        {% if trip.image_a %}
+                        <span class="edit-img"><a href="{{trip.image_a.url}}"><img src="/media/{{trip.image_a}}" style="width:40px;height:40px;border-radius:50%;vertical-align: middle;"></a></span>
+                        {% endif %}
+                        <input type="file" name="image_a">
+                    </div>
+
+                    <div class="add-input-box">
+                        {% if trip.image_b %}
+                        <span class="edit-img"><a href="{{trip.image_b.url}}"><img src="/media/{{trip.image_b}}" style="width:40px;height:40px;border-radius:50%;vertical-align: middle;"></a></span>
+                        {% endif %}
+                        <input type="file" name="image_b">
+                    </div>
+                   
+                    <div class="add-input-box">
+                        {% if trip.image_c %}
+                        <span class="edit-img"><a href="{{trip.image_c.url}}"><img src="/media/{{trip.image_c}}" style="width:40px;height:40px;border-radius:50%;vertical-align: middle;"></a></span>
+                        {% endif %}
+                        <input type="file" name="image_c">
+                    </div>
+
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="document-text"></ion-icon></span>
+                        <input type="text" name="description" value="{{trip.description}}" required>
+                        <label><b>Description</b></label>
+                    </div>
+                </div>
+            <button type="submit" class="add-button">Edit Destination</button>
+        </form>
+    </div>
+</main>
+{% endblock %}

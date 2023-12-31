@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}View Destination{% endblock %}
+
+{% block content %}
+<section>
+        {% if trip %}
+        {% for t in trip %}
+        <div class="avd-card">
+            <div class="face front">
+                <a href="{{t.main_image.url}}"><img src="/media/{{t.main_image}}"></a>
+                <h3>{{t.place}}</h3>
+            </div>
+            <div class="face back">
+                <h5>{{t.country}}</h5>
+                <p>{{t.description}}</p>
+                <div class="avd-link">
+                    <a href="/customer/detail_destination/{{t.id}}/">Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="else">
+            <h4>We can't find the destination you are looking for.
+                Do you want to see all the destinations we can serve in our website?
+                It will find the destination you want to go to.If you want to see it,
+                click <a href="{% url 'view_destination' %}">Show All Destinations</a>
+            </h4>
+        </div>
+        {% endif %}
+</section>
+{% endblock %}

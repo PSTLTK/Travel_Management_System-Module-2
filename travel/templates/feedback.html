@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Feedback{% endblock %}
+
+{% block content %}
+{% load static %}
+<section>
+    <div class="feedback-box">
+        <h3>Thank for your feedback  <span class="feedback-name">{{user.username}}</span></h3>
+        <p>Thank you for taking the time to fill out our customer satisfaction survey.
+             We appreciate your feedback and are already brainstorming ways to make your next visit
+              even better."
+        </p>
+        <center>
+            <a href="{% url 'blog' %}" ><button>Go Back</button></a>
+        </center>
+    </div>
+</section>
+{% endblock %}

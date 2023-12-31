@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}View Feedback{% endblock %}
+
+{% block content %}
+<body>
+    <div class="avb_table">
+        <div class="avb_table_header">
+            <h1 style="color:black;text-align: center;">All Feedback</h1>
+        </div>
+        <div class="avb_table_body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feedback Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Feedback Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for f in feedback %}
+                    <tr>
+                        <td>{{f.id}}</td>
+                        <td style="text-transform: uppercase;letter-spacing: 1px;">{{f.user.username}}</td>
+                        <td>{{f.user.email}}</td> 
+                        <td>{{f.message}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+{% endblock %}

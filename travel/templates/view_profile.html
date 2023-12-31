@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}View Profile{% endblock %}
+
+{% block content %}
+{% load static %}
+<section>
+    <div class="view-profile-card">
+        <div class="view-profile-img">
+            {% if detail.profile %}
+            <img src="/media/{{detail.profile}}">
+            {% else %}
+            <img src="{% static '/images/profile.png'%}">
+            {% endif %}
+        </div>
+        <div class="view-profile-detail">
+            <div class="view-profile-content">
+                <p style="margin-top:80px;"><span>Name :</span> {{user.username}}</p>
+                <p><span>Email :</span> {{user.email}}</p>
+                <p><span>Phone :</span> {{detail.phone}}</p>
+                <p><span>Address :</span> {{detail.address}}</p>
+            </div>
+            <div class="view-profile-button">
+                {% if user.username == "admin" %}
+                <a href="/admin_edit_profile/{{user.id}}/">Edit</a>
+                {% else %}
+                <a href="/customer/edit_profile/{{user.id}}/">Edit</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

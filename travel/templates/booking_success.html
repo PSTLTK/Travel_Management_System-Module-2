@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Booking{% endblock %}
+
+{% block content %}
+<section>
+    <div class="booking-success-box">
+        <div class="booking-success-content">
+            <h4>Booked Successfully ! <span class="booking-success-username">{{user.username}}</span></h4>
+            <p>Your booking - code is <span class="booking-success-code">( {{booking.b_code}} )</span></p>
+            <p>Don't forget it cause of anything else.</p>
+            <p>We'll contact you very soon ....</p>
+            <p>Thanks for booking us trustfully.</p>
+        </div>
+        <center>
+            <a href="/customer/mybooking/{{user.id}}/" ><button >Go Back</button></a>
+        </center>
+    </div>
+</section>
+{% endblock %}

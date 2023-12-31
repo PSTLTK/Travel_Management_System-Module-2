@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<center>
+<form method="POST">
+    <div class="btnbg">
+    <a href="/admin_view_profile/{{user.id}}/">
+            Welcome {{user.username}}
+    </a>
+</div>
+</form>
+</center>
+{% endif %}
+<h2 class="admin-title">Admin Panel</h2>
+<br><br>
+ {% if messages %}
+{% for message in messages %}       
+<div class= "alert {{message.tags}} alert-dismissible fade show" role="alert">
+{{message}}
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}    
+  <div class="admin-home-box">
+    <div class="admin-box">
+        <a href="{% url 'admin_view_destination' %}">
+        <div class="total-destination-box">
+            <h1 style="color:gold;">{{trip.count}}</h1>
+            <p>Total Destination</p>
+        </div>
+        </a>
+        <a href="{% url 'admin_view_user' %}">
+        <div class="total-user-box">
+            <h1 style="color:aqua;"> {{myuser.count}}</h1>
+            <p>Total User</p>
+        </div>
+        </a>
+        <a href="/admin_view_booking/{{user.id}}/">
+        <div class="total-booking-box">
+            <h1 style="color:chartreuse;">{{booking.count}}</h1>
+            <p>Total Booking</p>
+        </div>
+        </a>
+        <a href="{% url 'admin_view_feedback' %}">
+            <div class="total-booking-box" style="border-color:rgb(255, 255, 255);">
+                <h1 style="color:rgb(255, 255, 255);">{{feedback.count}}</h1>
+                <p style="color:rgb(255, 255, 255);">Total Feedback</p>
+            </div>
+        </a>
+    </div> 
+  </div>         
+  
+
+ 
+
+
+   
+
+{% endblock %}

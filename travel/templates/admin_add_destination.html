@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Add Destination{% endblock %}
+
+{% block content %}
+<main>
+    <div class="add-box">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="add-title">Add Destination</h2>
+                <div class="section-1">
+                    <h4>Destination Detail</h4>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="globe"></ion-icon></span>
+                        <input type="text" name="place" required>
+                        <label><b>Destination Name</b></label>
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="globe"></ion-icon></span>
+                        <input type="text" name="country" required>
+                        <label><b>City and Country</b></label>
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="airplane"></ion-icon></span>
+                        <input type="text" name="flight_price"required >
+                        <label><b>Flight Price For A Person</b></label>
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="logo-usd"></ion-icon></span>
+                        <input type="text" name="adult" required>
+                        <label><b>Price For Adult per Day</b></label>
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="logo-usd"></ion-icon></span>
+                        <input type="text" name="child" required>
+                        <label><b>Price For Child per Day</b></label>
+                    </div>
+                    <div class="add-input-box">
+                        <select name="continent">
+                            <option>Continent</option>
+                            {% for c in continent %}
+                            <option value="{{c.id}}">{{c.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="section-2">
+                    <h4>Images of Destination</h4>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="image"></ion-icon></span>
+                        <input type="file" name="main_image">
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="image"></ion-icon></span>
+                        <input type="file" name="image_a">
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="image"></ion-icon></span>
+                        <input type="file" name="image_b">
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="image"></ion-icon></span>
+                        <input type="file" name="image_c">
+                    </div>
+                    <div class="add-input-box">
+                        <span class="icon"><ion-icon name="document-text"></ion-icon></span>
+                        <textarea type="text"name="description" required placeholder="Description"></textarea>
+                    </div>
+                </div>
+            <button type="submit" class="add-button">Add New Destination</button>
+        </form>
+    </div>
+</main>
+{% endblock %}

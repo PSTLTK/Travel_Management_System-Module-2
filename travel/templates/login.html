@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Login Form{% endblock %}
+
+{% block content %}
+<section>
+    <div class="login-box">
+        <form method="POST">
+            {% csrf_token %}
+            <h2>Login</h2>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                <div class= "alert {{message.tags}} alert-dismissible fade show" role="alert">
+                {{message}}
+                <!-- <button type="button" data-bs-dismiss="alert" aria-label="Close"></button> -->
+            </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="login-input-box">
+                <span class="icon"><ion-icon name="person-circle"></ion-icon></span>
+                <input type="text" name="username" required>
+                <label><b>Account Name</b></label>
+            </div>
+            <div class="login-input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password"id="pass"name="password" required>
+                <label><b>Password</b></label>
+            </div>
+            <div class="show-forgot">
+                <label><input onclick="myFunction()" type="checkbox">Show Password</label>
+            </div>
+            <script>
+                function myFunction() {
+                  var x = document.getElementById("pass");
+                  if (x.type === "password") {
+                    x.type = "text";
+                  } else {
+                    x.type = "password";
+                  }
+                }
+              </script>
+            <button type="submit" class="login-button">Login</button>
+            <div class="signup-link">
+                <p>Don't have an account?<a href="{% url 'signup' %}"><b>Sign Up</b></a></p>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

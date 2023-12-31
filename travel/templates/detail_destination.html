@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Detail Destination{% endblock %}
+
+{% block content %}
+<section>
+    <div class="detail-box">
+        <div class="detail-section-1">
+            <a href="{{trip.main_image.url}}"><img src="/media/{{trip.main_image}}"></a> 
+        </div>
+        <div class="detail-section-2">
+            <div class="detail-img-box">
+                <a href="{{trip.image_a.url}}"><img src="/media/{{trip.image_a}}"></a>
+                <a href="{{trip.image_b.url}}"><img src="/media/{{trip.image_b}}"></a>
+                <a href="{{trip.image_c.url}}"><img src="/media/{{trip.image_c}}"></a> 
+            </div>
+            <div class="detail-data">
+                <table>
+                    <tr>
+                        <td>Destination</td>
+                        <td width="50px" align="center"><b>:</b></td>
+                        <td>{{trip.place}} </td>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td width="50px" align="center"><b>:</b></td>
+                        <td>{{trip.country}}</td>
+                    </tr>
+                    <tr>
+                        <td>Flight Price For a Person</td>
+                        <td width="50px" align="center"><b>:</b></td>
+                        <td>{{trip.flight_price}} MMK</td>
+                    </tr>
+                    <tr>
+                        <td>Price For Adult per Day</td>
+                        <td width="50px" align="center"><b>:</b></td>
+                        <td>{{trip.adult_per_day}} MMK</td>
+                    </tr>
+                    <tr>
+                        <td>Price For Child per Day</td>
+                        <td width="50px" align="center"><b>:</b></td>
+                        <td>{{trip.child_per_day}} MMK</td>
+                    </tr>
+                </table><br>
+
+                <div class="middle">
+                    <a href="/customer/booking/{{trip.id}}/"><div class="booking-link">Booking Now</div></a> 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

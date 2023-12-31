@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="edit-profile-box">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h2>Edit Your Profile</h2>
+                <div class="edit-profile-input-box">
+                    {% if detail.profile %}
+                    <span class="edit-img"><a href="{{detail.profile.url}}"><img src="/media/{{detail.profile}}" style="width:40px;height:40px;border-radius:50%;vertical-align: middle;"></a></span>
+                    {% endif %}
+                    {% if detail.profile %}
+                    <input type="file" name="profile">
+                    {% else %}
+                    <input type="file" name="profile" required>
+                    {% endif %}
+                </div>
+                <div class="edit-profile-input-box">
+                    <span class="icon"><ion-icon name="person-circle"></ion-icon></span>
+                    <input type="text" name="username" value="{{user.username}}" required>
+                    <label><b>Username</b></label>
+                </div>
+                <div class="edit-profile-input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" name="email" value="{{user.email}}" required>
+                    <label><b>Email Address</b></label>
+                </div>
+                <div class="edit-profile-input-box">
+                    <span class="icon"><ion-icon name="location"></ion-icon></span>
+                    <input type="text" name="address" value="{{detail.address}}" required>
+                    <label><b>Address</b></label>
+                </div>
+                <div class="edit-profile-input-box">
+                    <span class="icon"><ion-icon name="call"></ion-icon></span>
+                    <input type="text" name="phone" value="{{detail.phone}}" required>
+                    <label><b>Phone no.</b></label>
+                </div>
+                <button type="submit" class="edit-profile-button">Confirm</button>
+
+            </form>
+        </div>
+    </section>
+{% endblock %}
